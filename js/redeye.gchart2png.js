@@ -16,6 +16,8 @@
             height_if_zero:         10,
             value_if_zero:          0.5,
             min_height:             20,
+            y_axis_max:             10,    
+            y_axis_min:             0,
             diff_y:                 20
         }
 
@@ -178,6 +180,8 @@
                     }
                 },
                 vAxis:  {
+                    maxValue: plugin.settings.y_axis_max,
+                    minValue: plugin.settings.y_axis_min,
                     title: '',  
                     gridlines: {
                         count: 0
