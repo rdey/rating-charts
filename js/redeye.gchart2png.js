@@ -9,9 +9,9 @@
             graph_values:           [6, 8, 0, 2.5, 5],
             min_bar_width:          40,
             max_value:              10,
-            chart_width:            800,
+            chart_width:            600,
             chart_height:           300,
-            font_size:              26,
+            font_size:              40,
             font_weight:            600,
             height_if_zero:         10,
             value_if_zero:          0.5,
@@ -52,7 +52,7 @@
 
         plugin.generate_image = function(){
             var canvas = plugin.svg_to_canvas()
-            var png = plugin.canvas_to_png()
+            var png = plugin.canvas_to_jpg()
         };
 
         plugin.svg_to_canvas = function(){
@@ -67,6 +67,11 @@
             return png
         };
 
+        plugin.canvas_to_jpg = function(){
+            var canvas = canvas_el;
+            var jpg = Canvas2Image.saveAsJPEG(canvas);
+        }
+
         plugin.custom_styling = function(){
             plugin.edit_bars();
             plugin.edit_chart_styles();
@@ -79,7 +84,7 @@
 
             $text.attr('font-size', plugin.settings.font_size);
             $text.attr('font-weight', plugin.settings.font_weight);
-            $text.attr('y', _y+10);
+            $text.attr('y', _y+20);
         };
 
         plugin.create_fat_border = function(_clone, _x, _y, _width){
@@ -167,8 +172,9 @@
             var data = google.visualization.arrayToDataTable(arr);
             
             var visuals = {
-                chartArea:{left:'10%',top:20,width:"80%",height:"80%"},
+                chartArea:{left:'0%',top:20,width:"100%",height:"80%"},
                 title: "",
+                bar: {groupWidth: 110},
                 width: plugin.settings.chart_width, 
                 height: plugin.settings.chart_height,
                 colors: plugin.settings.colors,
